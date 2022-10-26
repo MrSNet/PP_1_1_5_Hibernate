@@ -9,8 +9,10 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
+    private static Connection connection;
+
     public static Connection getConnection() {
-        Connection connection;
+
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -21,4 +23,13 @@ public class Util {
         return connection;
 
     }
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
